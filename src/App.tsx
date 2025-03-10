@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Box, Button } from "@mui/material";
+import TeamScreen from "./screens/TeamScreen";
+import DiagramScreen from "./screens/DiagramScreen";
+import ChartScreen from "./screens/ChartScreen";
 
-function App() {
-  const [count, setCount] = useState(0)
+
+const App = () => {
+  const menuItems = [
+    { text: "Teams", path: "/" },
+    { text: "Diagram", path: "/diagram" },
+    { text: "Charts", path: "/charts" },
+  ];
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Team Control Dashboard</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <Router>
+        <Box sx={{ flex: 1, display: "flex" }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, width: 250, padding: 2 }}>
+            {menuItems.map(({ text, path }) => (
+              <Button key={text} component={Link} to={path} variant="contained" sx={{ width: "100%" }}>
+                {text}
+              </Button>
+            ))}
+          </Box>
+          <Box component="main" sx={{ flexGrow: 1, p: 3 }} style={{ padding: 0 }}>
+            <Routes>
+              <Route path="/" element={<TeamScreen />} />
+              <Route path="/diagram" element={<DiagramScreen />} />
+              <Route path="/charts" element={<ChartScreen />} />
+            </Routes>
+          </Box>
+        </Box>
+      </Router>
+  );
 }
-
-export default App
+export default App;
