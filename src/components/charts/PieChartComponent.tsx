@@ -26,9 +26,9 @@ const PieChartComponent: React.FC = () => (
   <ResponsiveContainer width="50%" height={300}>
     <PieChart>
       <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100}>
-        {pieData.map((index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-        ))}
+      {pieData.map((entry, index) => (
+        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+      ))}
       </Pie>
       <Tooltip content={<CustomTooltip />} />
       <Legend />

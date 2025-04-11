@@ -2,6 +2,45 @@ import React, { createContext, useContext, useState, ReactNode, useCallback } fr
 import { nanoid } from "nanoid"; 
 import { NewUser, Team, TeamContextType, User } from "../types/team";
 
+const initialTeams = [
+  {
+    id: "pJfSZJyeiZjE_xI8ZxHtZ",
+    name: "Front End Team",
+    description: "Develops the user interface.",
+    leader: "Deniz",
+    users: [
+      {
+        id: "n6QDMTtvRAjGEh-MQQfN3",
+        name: "Selçuk",
+        role: "React Developer"
+      },
+      {
+        id: "7Ou1yuqV-noPDlJqRYxrk",
+        name: "Cengiz",
+        role: "React Native Developer"
+      }
+    ]
+  },
+  {
+    id: "OEERPd8LTpqZ2QELPkKml",
+    name: "Back End Team",
+    description: "Handles server-side logic, APIs, and database operations.",
+    leader: "Berkhan",
+    users: [
+      {
+        id: "dFQw0pqPKyRpics1Q53dA",
+        name: "Bilal",
+        role: "Node Developer"
+      },
+      {
+        id: "Vyt3YJxENddmjuKc218wu",
+        name: "Samet",
+        role: "Python Developer"
+      }
+    ]
+  }
+]
+
 // Initial Context
 const defaultContext: TeamContextType = {
   teams: [],
@@ -13,7 +52,7 @@ const defaultContext: TeamContextType = {
 const TeamContext = createContext<TeamContextType>(defaultContext);
 
 export const TeamProvider = ({ children }: { children: ReactNode }) => {
-  const [teams, setTeams] = useState<Team[]>([]);
+  const [teams, setTeams] = useState<Team[]>(initialTeams);
 
   // Update the specified team  
   const updateTeam = (teamId: string, updateFn: (team: Team) => Team) => {

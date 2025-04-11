@@ -1,15 +1,20 @@
 import React from "react";
 import { Paper, ListItem, ListItemText, Button } from "@mui/material";
 import { TeamItemProps, User } from "../../types/team";
-
-// FormatUser Function
-const formatUser = (user: User): string =>
-  `{ ${Object.entries(user).map(([k, v]) => `${k}: ${v}`).join(", ")} }`;
+import UserCard from "./userCard";
 
 // UserList Component
-const UserList: React.FC<{ users: User[] }> = ({ users = [] }) => (
-  <ListItemText primary={`Users: ${users.length > 0 ? users.map(formatUser).join(" - ") : "No users"}`} />
-);
+const UserList: React.FC<{ users: User[] }> = ({ users = [] }) => {
+  if (users.length === 0) return <ListItemText primary="No users" />;
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      {users.map((user) => (
+        <UserCard key={user.id} user={user} />
+      ))}
+    </div>
+  );
+};
 
 // TeamItem Component
 const TeamItem: React.FC<TeamItemProps> = ({ team, handleOpenUserModal }) => {
@@ -35,8 +40,8 @@ const TeamItem: React.FC<TeamItemProps> = ({ team, handleOpenUserModal }) => {
 // Styles
 const styles = {
   paper: { marginBottom: 20, padding: 8 },
-  listItem: { display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  infoContainer: { display: "flex", flexDirection: "column", gap: 8, margin: 20 }
+  listItem: { display: "flex", flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between" },
+  infoContainer: { display: "flex", flexDirection: "column", gap: 8, marginRight: 20 }
 };
 
 export default TeamItem;

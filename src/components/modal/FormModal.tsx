@@ -20,7 +20,7 @@ const FormModal: React.FC<FormModalProps> = ({ open, onClose, title, inputs, onC
       ))}
     </DialogContent>
     <DialogActions>
-      <Button onClick={onClose} color="secondary">Cancel</Button>
+      <Button onClick={onClose} variant="text" color="inherit" >Cancel</Button>
       <Button onClick={onSubmit} color="primary" variant="contained">Add</Button>
     </DialogActions>
   </Dialog>

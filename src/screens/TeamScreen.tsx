@@ -6,7 +6,7 @@ import { useTeamContext } from "../context/TeamContext";
 import { NewTeam } from "../types/team";
 
 const TeamScreen: React.FC = () => {
-  const { addTeam } = useTeamContext();
+  const { teams, addTeam } = useTeamContext();
 
   // States
   const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
@@ -33,7 +33,7 @@ const TeamScreen: React.FC = () => {
     { name: "description", label: "Description", value: teamData.description || "" },
     { name: "leader", label: "Leader Name", value: teamData.leader || "" },
   ] as const;
-
+  console.log("teams:",teams )
   return (
     <Container maxWidth="sm">
       <h1>Teams</h1>
