@@ -21,8 +21,8 @@ const TeamItem: React.FC<TeamItemProps> = ({ team, handleOpenUserModal }) => {
   const filteredEntries = Object.entries(team).filter(([key]) => key !== "id" && key !== "users");
   
   return (
-    <Paper style={styles.paper}>
-      <ListItem style={styles.listItem}>
+    <Paper sx={styles.paper}>
+      <ListItem sx={styles.listItem}>
         <div style={styles.infoContainer}>
           {filteredEntries.map(([key, value]) => (
             <ListItemText key={key} primary={`${key}: ${String(value)}`} />
@@ -39,9 +39,9 @@ const TeamItem: React.FC<TeamItemProps> = ({ team, handleOpenUserModal }) => {
 
 // Styles
 const styles = {
-  paper: { marginBottom: 20, padding: 8 },
-  listItem: { display: "flex", flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between" },
-  infoContainer: { display: "flex", flexDirection: "column", gap: 8, marginRight: 20 }
+  paper: { flex: 1, padding: 0,  },
+  listItem: { flex: 1, flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between", gap: 8 },
+  infoContainer: { flex: 1, flexDirection: "column", gap: 8 }
 };
 
 export default TeamItem;

@@ -35,7 +35,7 @@ const TeamScreen: React.FC = () => {
   ] as const;
   console.log("teams:",teams )
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="md">
       <h1>Teams</h1>
 
       {/* Team List Component (Handles User Modals) */}
